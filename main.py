@@ -104,12 +104,20 @@ if __name__ == '__main__':
         for i in range(7):
             fake += random.choice('0123456789')
 
-        fake += str(0)
+        i = 0
+        fake += str(i)
         place, place_num = check_born_place(fake)
         gender = check_gender(fake)
         fake_num = str(place_num) + fake[1:10]
         while not compute(fake_num):
-            fake_num[10] = str(int(fake_num[10]) + 1)
+            i += 1
+            fake_num = list(fake_num)
+            fake_num.pop()
+            fake_num = ''.join(fake_num) + str(i)
+        
+        fake = list(fake)
+        fake.pop()
+        fake = ''.join(fake) + str(i)
         
         print('As you wish.')
         print(fake)
@@ -118,13 +126,15 @@ if __name__ == '__main__':
         # To check if the string is valid.
         result = re.match(pattern, input_string)
         if result == None:  
-            print('Invalid!')
+            print('Invalid! Does not match the form!')
         else:
             place, place_num = check_born_place(input_string)
             gender = check_gender(input_string)
 
-            if place == None or gender == None:
-                print('Invalid!')
+            if place == None:
+                print('Invalid birthplace!')
+            elif gender == None:
+                print('Invalid gender!')
             else:
                 input_num = str(place_num) + input_string[1:10]
                 result = compute(input_num)
