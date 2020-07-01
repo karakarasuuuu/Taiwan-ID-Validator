@@ -88,7 +88,8 @@ def compute(input_num):
     s = 0
     for i in range(11):
         s += int(input_num[i]) * int(multiplier[i])
-    return s
+    
+    return True if s % 10 == 0 else False
 
 if __name__ == '__main__':
     input_string = input('Enter your ID (case-sensitive): ')
@@ -98,32 +99,21 @@ if __name__ == '__main__':
     if input_string == 'Make me one!':
         fake = str()
 
-        while True:
-            fake += random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-            fake += random.choice('12')
-            for i in range(8):
-                fake += random.choice('0123456789')
+        fake += random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        fake += random.choice('12')
+        for i in range(7):
+            fake += random.choice('0123456789')
 
-            result = re.match(pattern, fake)
-            if result == None:
-                continue
-            
-            place, place_num = check_born_place(fake)
-            gender = check_gender(fake)
-                
-            if place == None or gender == None:
-                continue
-                
-            fake_num = str(place_num) + fake[1:10]
-            s = compute(fake_num)
-
-            if s % 10 == 0:
-                break
-            else:
-                continue    
+        fake += str(0)
+        place, place_num = check_born_place(fake)
+        gender = check_gender(fake)
+        fake_num = str(place_num) + fake[1:10]
+        while not compute(fake_num):
+            fake_num[10] = str(int(fake_num[10]) + 1)
         
         print('As you wish.')
         print(fake)
+        print('This person was born in ' + place + ', and is ' + gender + '.')
     else:
         # To check if the string is valid.
         result = re.match(pattern, input_string)
@@ -137,9 +127,9 @@ if __name__ == '__main__':
                 print('Invalid!')
             else:
                 input_num = str(place_num) + input_string[1:10]
-                s = compute(input_num)
+                result = compute(input_num)
                 
-                if s % 10 == 0:
+                if result:
                     print('Valid!')
                     print('This person was born in ' + place + ', and is ' + gender + '.')
                 else:
