@@ -22,4 +22,4 @@ If the remainder is zero, then this is a valid ID.
 - [ ] foreigners
 - [ ] GUI
 - [ ] refactoring
-- [ ] separate main and functions
+- [x] separate main and functions
