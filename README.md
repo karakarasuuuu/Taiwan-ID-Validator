@@ -18,7 +18,7 @@ If the remainder is zero, then this is a valid ID.
 
 ## To-Do
 
-- [] for foreigners
-- [] GUI
-- [] refactoring
-- [] seperate main and functions
+- [ ] for foreigners
+- [ ] GUI
+- [ ] refactoring
+- [ ] seperate main and functions
