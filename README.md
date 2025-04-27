@@ -23,3 +23,9 @@ If the remainder is zero, then this is a valid ID.
 - [ ] GUI
 - [ ] refactoring
 - [x] separate main and functions
+
+## To-Do 2025
+
+- [ ] Refactor Python version to a better one
+- [ ] Implement Ruby version
+- [ ] Implement C# version
